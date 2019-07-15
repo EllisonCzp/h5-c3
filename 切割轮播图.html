@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .view {
+            width: 560px;
+            height: 300px;
+            margin: 100px auto;
+            position: relative;
+        }
+        
+        ul {
+            width: 100%;
+            height: 100%;
+            list-style: none;
+            /* transform: rotate3d(1, 1, 0, -30deg); */
+            transform-style: preserve-3d;
+        }
+        
+        ul>li {
+            width: 20%;
+            height: 100%;
+            float: left;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform .5s;
+        }
+        
+        ul>li>span {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        ul>li>span:nth-of-type(1) {
+            background-image: url(images/q1.jpg);
+            transform: translateZ(150px);
+        }
+        
+        ul>li>span:nth-of-type(2) {
+            background-image: url(images/q2.jpg);
+            transform: translateY(-150px) rotateX(90deg);
+        }
+        
+        ul>li>span:nth-of-type(3) {
+            background-image: url(images/q3.jpg);
+            transform: translateZ(-150px) rotateX(180deg);
+        }
+        
+        ul>li>span:nth-of-type(4) {
+            background-image: url(images/q4.jpg);
+            transform: translateY(150px) rotateX(-90deg);
+        }
+        
+        ul>li:nth-of-type(2)>span {
+            background-position: -100% 0;
+        }
+        
+        ul>li:nth-of-type(3)>span {
+            background-position: -200% 0;
+        }
+        
+        ul>li:nth-of-type(4)>span {
+            background-position: -300% 0;
+        }
+        
+        ul>li:nth-of-type(5)>span {
+            background-position: -400% 0;
+        }
+        
+        .pre,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            text-decoration: none;
+            font-size: 40px;
+            color: #ccc;
+            text-align: center;
+            line-height: 60px;
+            background-color: rgba(0, 0, 0, .5);
+        }
+        
+        .pre {
+            left: 0;
+        }
+        
+        .next {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="view">
+        <ul>
+            <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+            <li>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </li>
+        </ul>
+        <a href="#" class="pre">&lt;</a>
+        <a href="#" class="next">&gt;</a>
+    </div>
+    <script src="jquery.min.js"></script>
+    <script>
+        $(function($) {
+            var flag = true;
+            var key = 0;
+            $('.pre').on('click', function() {
+                if (flag) {
+                    flag = false;
+                    key--;
+                    $('li').each(function(index, ele) {
+                        $(this).css({
+                            'transform': 'rotateX(' + -(key * 90) + 'deg)',
+                            'transition-delay': (index * 0.1) + 's'
+                        });
+                    });
+                    setTimeout(function() {
+                        flag = true;
+                    }, 600)
+                }
+            });
+
+            $('.next').on('click', function() {
+                if (flag) {
+                    flag = false;
+                    key++;
+                    $('li').each(function(index, ele) {
+                        $(this).css({
+                            'transform': 'rotateX(' + -(key * 90) + 'deg)',
+                            'transition-delay': (index * 0.1) + 's'
+                        });
+                    });
+
+                    setTimeout(function() {
+                        flag = true;
+                    }, 600)
+                }
+            });
+
+            setInterval(function() {
+                $('.next').trigger('click')
+
+            }, 5000)
+        });
+    </script>
+</body>
+
+</html>

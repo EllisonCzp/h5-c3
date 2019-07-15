@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/360.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="fullpage">
+        <div class="section first">
+            <div class="logo"></div>
+            <div class="text">
+                <img src="images/text_1.png">
+                <img src="images/text_2.png">
+                <img src="images/text_3.png">
+                <img src="images/text_4.png">
+                <img src="images/text_5.png">
+                <img src="images/text_6.png">
+                <img src="images/text_7.png">
+                <img src="images/text_8.png">
+            </div>
+            <div class="intor"></div>
+        </div>
+        <div class="section second">
+            <div class="shield">
+                <img src="images/shield_1.png">
+                <img src="images/shield_2.png">
+                <img src="images/shield_3.png">
+                <img src="images/shield_4.png">
+                <img src="images/shield_5.png">
+                <img src="images/shield_6.png">
+                <img src="images/shield_7.png">
+                <img src="images/shield_8.png">
+                <img src="images/shield_9.png">
+            </div>
+            <div class="intor"></div>
+        </div>
+        <div class="section third">
+            <div class="intor"></div>
+            <div class="circular">
+                <div class="rocket"></div>
+            </div>
+        </div>
+        <div class="section fourth">
+            <div class="search">
+                <div class="search-bar"></div>
+                <div class="search-text"></div>
+                <div class="search-result"></div>
+            </div>
+            <div class="intor"></div>
+        </div>
+        <div class="section fifth">
+            <div class="intor"></div>
+            <div class="content">
+                <div class="header"></div>
+                <div class="footer"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+    <script>
+        $(function() {
+            var section = $('.section');
+            $('#fullpage').fullpage({
+                'sectionsColor': ['skyBlue', 'green', 'orange', 'rgb(7, 139, 172)', 'rgb(46, 163, 241)'],
+                afterLoad: function(anchorLink, index) {
+                    section.removeClass('current');
+                    setTimeout(function() {
+                        section.eq(index - 1).addClass('current');
+                    }, 50);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
